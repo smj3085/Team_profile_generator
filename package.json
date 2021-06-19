@@ -1,0 +1,32 @@
+{
+  "name": "team_profile_generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "daemon": "^1.1.0",
+    "fs": "^0.0.1-security",
+    "init": "^0.1.2",
+    "inquirer": "^8.1.1",
+    "jest": "^27.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smj3085/Team_profile_generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smj3085/Team_profile_generator/issues"
+  },
+  "homepage": "https://github.com/smj3085/Team_profile_generator#readme"
+}

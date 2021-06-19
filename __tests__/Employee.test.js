@@ -1,11 +1,11 @@
 const Employee = require("../lib/Employee");
 
-describe("Employee", () => {
-    it("Can instantiate Employee instance"), () => {
+describe("Employee Test Sequence", () => {
+    it("Can instantiate Employee instance", () => {
         const employ = new Employee();
 
         expect(typeof(employ)).toBe("object");
-    };
+    });
 
     it("Can set name via constructor arguments", () => {
         const name = "Anne";
@@ -37,12 +37,12 @@ describe("Employee", () => {
         });
     });
 
-    describe("getID", () => {
+    describe("getId", () => {
         it("Can get id via getId()", () => {
             const testValue = "10";
             const employ = new Employee("Sam", testValue);
 
-            expect(employ.getID()).toBe(testValue);
+            expect(employ.getId()).toBe(testValue);
         });
     });
 
