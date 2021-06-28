@@ -1,45 +1,138 @@
 
-function mainHtml() {
-    return `
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
-      <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap" rel="stylesheet">
-      <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="./assets/css/style.css"/>
-      
-      <title>My Team</title>
-    </head>
+// generate html page 
+const generateTeamPage = function (mapEmployeeCards) {   
+    return`
+    <!DOCTYPE html>
+<html>
 
-    <body>
-        <header class="jumbotron jumbotron-fluid">
-            <h1 class="display-5 font-weight-bold">My Team</h1>
-        </header>
-        <main class="container">
-            <div class="row col-6">
-                <div class="card mx-auto" style="width: 18rem">
-                    ${teamMembers}
-                </div>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">  
+    <title>Team Profile Generator</title> 
+</head>
+
+<body>
+    <div class="jumbotron text-white" style="background-color: #1d1152;">
+        <h1 class="text-center">Team Profile Generator</h1>
+    </div>
+
+    <div class="container justify-content-center">
+        <div class="card-deck">
+            <div class="row justify-content-center">
+                    <!--Team Cards-->
+                    ${mapEmployeeCards}
             </div>
-        </main>
+        </div>
+    </div>
+        
     </body>
-</html>`
+    
+    </html>
+  `;
+  }
+
+// create Manager card
+const generateManager = function (manager) {
+    return `
+    <div class="row justify-content-center">
+        <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
+        <div class="card">
+        <div class="card-header text-white" style="background-color: palevioletred;">
+            <h3><i class="fas fa-crown"></i> Manager<h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">${manager.name}</h5>
+            <p class="card-text">ID: ${manager.id}</p>
+            <p class="card-text">Phone number: ${manager.officePhone}</p>
+            <p class="card-text">Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
+        </div>
+        </div>
+    </div>
+    `;
+}
+
+// create Engineer card
+const generateEngineer = function (engineer) {
+    return `
+    <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
+          <div class="card">
+            <div class="card-header text-white" style="background-color: #1a86c9;">
+              <h3><i class="fas fa-glasses"></i> Engineer<h3>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">${engineer.name}</h5>
+              <p class="card-text">ID: ${engineer.id}</p>
+              <p class="card-text">Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
+              <p class="card-text">GitHub: <a target="_blank" href="https://github.com/${engineer.github}">${engineer.github}</a></p>
+            </div>
+          </div>
+    </div>
+    `
+}
+
+// create Intern card 
+const generateIntern = function (intern) {
+    return `
+    <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
+          <div class="card">
+            <div class="card-header text-white" style="background-color: #1a991c;">
+              <h3><i class="fas fa-user-graduate"></i> Intern<h3>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">${intern.name}</h5>
+              <p class="card-text">ID: ${intern.id}</p>
+              <p class="card-text">Email: <a href="mailto:${intern.email}">${intern.email}</a></p>
+              <p class="card-text">School: ${intern.school}</p>
+            </div>
+          </div>
+    </div>
+    `
+};
+
+generateHTML = (data) => {
+
+    teamArray = []; 
+
+    for (let i = 0; i < data.length; i++) {
+        const employee = data[i];
+        const role = employee.getRole(); 
+
+
+        // call manager function
+        if (role === 'Manager') {
+            const mapManagerCard = generateManager(employee);
+
+            teamArray.push(mapManagerCard);
+        }
+
+        // call engineer function
+        if (role === 'Engineer') {
+            const mapEngineerCard = generateEngineer(employee);
+
+            teamArray.push(mapEngineerCard);
+        }
+
+        // call intern function 
+        if (role === 'Intern') {
+            const mapInternCard = generateIntern(employee);
+
+            teamArray.push(mapInternCard);
+        }
+        
+    }
+
+    // joining strings 
+    const mapEmployeeCards = teamArray.join('')
+
+    // return to generated page
+    const generateTeam = generateTeamPage(mapEmployeeCards); 
+    return generateTeam;
+
 }
 
 
-// <div class="card-body">
-//                         <h5 class="card-title" id="name">Name</h5>
-//                         <h6 class="card-subtitle mb-2 text-muted" id="role">Role</h6>
-//                         <ul class="list-group list-group-flush">
-//                             <li class="list-group-item">ID</li>
-//                             <li class="list-group-item">Email</li>
-//                             <li class="list-group-item">GitHub</li>
-//                         </ul>
-//                     </div>
+// export to index
+module.exports = generateHTML; 
