@@ -27,7 +27,7 @@ const newManager = () => {
             name: "id",
             message: "Enter the manager's Id.",
             validate: numberInput => {
-                if  (!isNaN(numberInput)) {
+                if  (isNaN(numberInput)) {
                     console.log ("Enter a numeric Id.")
                     return false; 
                 } else {
