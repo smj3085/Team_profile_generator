@@ -25,6 +25,9 @@
   * See video demonstration
   [Video](https://drive.google.com/file/d/1t7mRiHHSla6Ng89g8XX-eZrscUWbnfT_/view)
 
+  ![picture](./dist/img/Screenshot1.png)
+  ![picture](./dist/img/Screenshot2.png)
+
 
   ## License
   * This project is licensed under the MIT. </br>
@@ -38,5 +41,5 @@
 
 
   ## Questions
-  If you have any questions about the repo, contact me directly at smj3085@hotmail.com. </br>
+  If you have any questions about the repo, contact me directly at stephaniemjlee@gmail.com. </br>
   You can find more of my work at [smj3085](http://github.com/smj3085).
