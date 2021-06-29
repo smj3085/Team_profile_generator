@@ -25,8 +25,8 @@
   * See video demonstration
   [Video](https://drive.google.com/file/d/1t7mRiHHSla6Ng89g8XX-eZrscUWbnfT_/view)
 
-  ![picture](./dist/img/Screenshot1.png)
-  ![picture](./dist/img/Screenshot2.png)
+  ![picture](./output/img/Screenshot1.png)
+  ![picture](./output/img/Screenshot2.png)
 
 
   ## License
