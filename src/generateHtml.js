@@ -8,9 +8,6 @@ const generateTeamPage = function (mapEmployeeCards) {
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">  
     <title>Team Profile Generator</title> 
 </head>
 
@@ -20,7 +17,7 @@ const generateTeamPage = function (mapEmployeeCards) {
     </div>
 
     <div class="container justify-content-center">
-        <div class="card-deck">
+        <div class="team-cards">
             <div class="row justify-content-center">
                     <!--Team Cards-->
                     ${mapEmployeeCards}
@@ -38,8 +35,8 @@ const generateTeamPage = function (mapEmployeeCards) {
 const generateManager = function (manager) {
     return `
     <div class="row justify-content-center">
-        <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
-        <div class="card">
+        <div class="col-auto mb-3">
+        <div class="card h-100">
         <div class="card-header text-white" style="background-color: palevioletred;">
             <h3><i class="fas fa-crown"></i> Manager<h3>
         </div>
@@ -57,7 +54,7 @@ const generateManager = function (manager) {
 // create Engineer card
 const generateEngineer = function (engineer) {
     return `
-    <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
+    <div class="col-auto mb-3">
           <div class="card">
             <div class="card-header text-white" style="background-color: #1a86c9;">
               <h3><i class="fas fa-glasses"></i> Engineer<h3>
@@ -76,7 +73,7 @@ const generateEngineer = function (engineer) {
 // create Intern card 
 const generateIntern = function (intern) {
     return `
-    <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
+    <div class="col-auto mb-3">
           <div class="card">
             <div class="card-header text-white" style="background-color: #1a991c;">
               <h3><i class="fas fa-user-graduate"></i> Intern<h3>
@@ -92,30 +89,26 @@ const generateIntern = function (intern) {
     `
 };
 
-generateHTML = (data) => {
+generateHTML = (array) => {
 
     teamArray = []; 
 
-    for (let i = 0; i < data.length; i++) {
-        const employee = data[i];
+    for (var i = 0; i < array.length; i++) {
+        const employee = array[i];
         const role = employee.getRole(); 
 
-
-        // call manager function
         if (role === 'Manager') {
             const mapManagerCard = generateManager(employee);
 
             teamArray.push(mapManagerCard);
         }
 
-        // call engineer function
         if (role === 'Engineer') {
             const mapEngineerCard = generateEngineer(employee);
 
             teamArray.push(mapEngineerCard);
         }
 
-        // call intern function 
         if (role === 'Intern') {
             const mapInternCard = generateIntern(employee);
 
@@ -124,15 +117,12 @@ generateHTML = (data) => {
         
     }
 
-    // joining strings 
     const mapEmployeeCards = teamArray.join('')
 
-    // return to generated page
     const generateTeam = generateTeamPage(mapEmployeeCards); 
     return generateTeam;
 
 }
 
 
-// export to index
 module.exports = generateHTML; 

@@ -3,7 +3,6 @@ const fs = require("fs");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const util = require('util');
 
 const generateHTML = require("./src/generateHtml.js");
 
@@ -15,22 +14,53 @@ const newManager = () => {
         {
             type: "input",
             name: "name",
-            message: "Enter the team manager's name.",
+            message: "Enter the team manager's name.", 
+            validate: function (answer) {
+                if (answer === '') {
+                    return console.log("Enter a name.");
+                }
+                return true;
+            }
         },
         {
             type: "input",
             name: "id",
             message: "Enter the manager's Id.",
+            validate: numberInput => {
+                if  (!isNaN(numberInput)) {
+                    console.log ("Enter a numeric Id.")
+                    return false; 
+                } else {
+                    return true;
+                }
+            }
         },
         {
             type: "input",
             name: "email",
             message: "Please enter the manager's email.",
+            validate: email => {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log ('Please enter an email!')
+                    return false; 
+                }
+            }
         },
         {
             type: "input",
             name: "officePhone",
             message: "Enter the manager's office phone number.",
+            validate: numberInput => {
+                if  (isNaN(numberInput)) {
+                    console.log ("Enter a phone number")
+                    return false; 
+                } else {
+                    return true;
+                }
+            }
         }
     ])
     .then(answers => {
@@ -55,28 +85,63 @@ const addTeamMember = () => {
             type: "input", 
             name: "name",
             message: "Enter team member's name.",
+            validate: function (answer) {
+                if (answer === '') {
+                    return console.log("Enter a name.");
+                }
+                return true;
+            }
         },
         {
             type: "input",
             name: "id",
             message: "Enter team member's id.",
+            validate: numberInput => {
+                if  (isNaN(numberInput)) {
+                    console.log ("Enter a numeric id")
+                    return false; 
+                } else {
+                    return true;
+                }
+            }
         },
         {
             type: "input",
             name: "email",
             message: "Enter team member's email.",
+            validate: email => {
+                valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                if (valid) {
+                    return true;
+                } else {
+                    console.log ("Enter an email")
+                    return false; 
+                }
+            }
         },
         {
             type: "input",
             name: "github",
-            message: "Enter employee's github username.",
+            message: "Enter team member's github username.",
             when: (input) => input.role === "Engineer",
+            validate: function (answer) {
+                if (answer === '') {
+                    return console.log("Enter a username.");
+                }
+                return true;
+            }
         },
         {
             type: "input",
             name: "school",
             message: "Enter intern's school",
             when: (input) => input.role === "Intern",
+            validate: function (answer) {
+                if (answer === '') {
+                    return console.log("Enter a school.");
+                }
+                return true;
+            }
         },
         {
             type: "list",
@@ -116,7 +181,7 @@ const writeFile = data => {
             return;
         // when the profile has been created 
         } else {
-            console.log("Your team profile has been successfully created! Please check out the index.html")
+            console.log("Check out your team profile in the output folder!")
         }
     })
 }; 

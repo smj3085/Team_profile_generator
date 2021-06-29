@@ -5,7 +5,7 @@ describe("Manager Test sequence", () => {
         const testValue = 97891234;
         const employ = new Manager("Sam", 10, "test@bootcamp.com", testValue);
     
-        expect(employ.officeNumber).toBe(testValue);
+        expect(employ.officePhone).toBe(testValue);
     });
 
     it("getRole() should return 'Manager'", () => {
@@ -19,7 +19,7 @@ describe("Manager Test sequence", () => {
         const testValue = 97891234;
         const employ = new Manager("Sam", 10, "test@bootcamp.com", testValue);
 
-        expect(employ.getOfficeNumber()).toBe(testValue);
+        expect(employ.getOfficePhone()).toBe(testValue);
     });
 
     
