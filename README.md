@@ -23,6 +23,7 @@
 
   ## Usage Guidelines
   * See video demonstration
+  [Video](https://drive.google.com/file/d/1t7mRiHHSla6Ng89g8XX-eZrscUWbnfT_/view)
 
 
   ## License
